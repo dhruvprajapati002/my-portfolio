@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+/* Smooth transitions for dark mode */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Prevent flash of unstyled content */
+html {
+  color-scheme: light dark;
+}
+
+/* Dark mode root variables (optional) */
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #1f2937;
+  --border-color: #e5e7eb;
+}
+
+:root.dark {
+  --bg-primary: #111827;
+  --text-primary: #f9fafb;
+  --border-color: #374151;
+}
