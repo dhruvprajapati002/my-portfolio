@@ -236,7 +236,6 @@ export const site = {
         "Vite",
         "HTML5",
         "CSS3",
-        
       ],
       links: {
         demo: "https://birthdaymath.vercel.app/",
@@ -255,6 +254,40 @@ export const site = {
         "Responsive design",
         "Real-time calculation",
         "Clean modern UI",
+      ],
+    },
+    {
+      name: "MovieFlix",
+      description:
+        "Netflix-inspired React application featuring movie browsing, search functionality, favorites management, and detailed movie information. Built with TMDB API integration for real-time movie data and modern responsive design.",
+      tech: [
+        "React",
+        "JavaScript",
+        "Tailwind CSS",
+        "TMDB API",
+        "Context API",
+        "React Router",
+        "Axios",
+        "Vite",
+      ],
+      links: {
+        demo: "https://movieflix-beta-seven.vercel.app/",
+        code: "https://github.com/dhruvprajapati002/movieflix",
+      },
+      image: "/movieflix.png",
+      status: "completed",
+      featured: true,
+      category: "Frontend Development",
+      date: "2025",
+      demoAvailable: true,
+      features: [
+        "TMDB API integration",
+        "Movie search & filtering",
+        "Favorites & watchlist",
+        "Movie details & ratings",
+        "Responsive Netflix-like UI",
+        "Context state management",
+        "Dynamic routing",
       ],
     },
   ],
