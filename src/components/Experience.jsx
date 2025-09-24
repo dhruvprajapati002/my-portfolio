@@ -525,7 +525,7 @@ export default function Experience() {
       positions: experience.length, // 1 (internship)
       technologies: Math.max(uniqueTech.size, 7), // Based on actual tech used
       learning: 1, // 1+ year of learning
-      projects: 4 // Based on actual projects built
+      projects: site.stats.projectsCompleted // Based on actual projects built
     };
   }, [experience]);
 

@@ -1,108 +1,51 @@
-// src/data/site.js
-export const site = {
-  name: "Dhruv Prajapati",
-  role: "MERN Stack Developer",
-  location: "Mahesana, India",
-  summary:
-    "Aspiring full‑stack developer with 1+ year of hands-on experience in MERN stack. Built secure, responsive applications with authentication, CRUD operations, and modern deployments through personal projects and internship experience.",
+import { p } from "framer-motion/client";
 
-  avatar: "/profile-image.jpg",
-  taglines: [
-    "MERN Stack Developer",
-    "Full-Stack Engineer",
-    "Problem Solver",
-    "Code Enthusiast",
-  ],
-
-  links: {
-    email: "dhruvprajapati0023@gmail.com",
-    phone: "+91-6351987712",
-    github: "https://github.com/dhruvprajapati002/",
-    linkedin: "https://www.linkedin.com/in/dhruv-prajapati-204549278/",
-    resume: "/resume.pdf",
-    twitter: "",
-    portfolio: "",
+// ✅ Skills configuration
+const skills = {
+  "Frontend Development": {
+    icon: "Palette",
+    color: "from-blue-500 to-cyan-500",
+    bgColor: "from-blue-500/10 to-cyan-500/10",
+    skills: [
+      "React",
+      "Tailwind CSS",
+      "React Router",
+      "Vite",
+      "HTML/CSS",
+      "JavaScript",
+    ],
   },
-
-  // Skills configuration
-  skills: {
-    "Frontend Development": {
-      icon: "Palette",
-      color: "from-blue-500 to-cyan-500",
-      bgColor: "from-blue-500/10 to-cyan-500/10",
-      skills: [
-        "React",
-        "Tailwind CSS",
-        "Redux/Context",
-        "React Router",
-        "Vite",
-        "HTML/CSS",
-        "JavaScript",
-      ],
-    },
-    "Backend Development": {
-      icon: "Server",
-      color: "from-green-500 to-emerald-500",
-      bgColor: "from-green-500/10 to-emerald-500/10",
-      skills: ["Node.js", "Express.js", "REST APIs", "JWT", "RBAC", "PHP"],
-    },
-    "Database & Tools": {
-      icon: "Database",
-      color: "from-purple-500 to-pink-500",
-      bgColor: "from-purple-500/10 to-pink-500/10",
-      skills: [
-        "MongoDB",
-        "Mongoose",
-        "MongoDB Atlas",
-        "MySQL",
-        "Git",
-        "GitHub",
-        "Postman",
-        "Docker",
-        "Vercel/Render",
-      ],
-    },
+  "Backend Development": {
+    icon: "Server",
+    color: "from-green-500 to-emerald-500",
+    bgColor: "from-green-500/10 to-emerald-500/10",
+    skills: ["Node.js", "Express.js", "REST APIs", "JWT", "RBAC", "PHP"],
   },
+  "Database & Tools": {
+    icon: "Database",
+    color: "from-purple-500 to-pink-500",
+    bgColor: "from-purple-500/10 to-pink-500/10",
+    skills: [
+      "MongoDB",
+      "MongoDB Atlas",
+      "MySQL",
+      "Git",
+      "GitHub",
+      "Postman",
+      "Docker",
+      "Vercel/Render",
+    ],
+  },
+};
 
-  // ✅ UPDATED: Corrected experience duration and description
-  experience: [
-    {
-      title: "MERN Stack Developer Intern",
-      company: "CreArt Solutions Pvt. Ltd.",
-      location: "Ahmedabad, Gujarat",
-      date: "June 2025", // ✅ Updated to reflect 1 month duration
-      duration: "1 Month",
-      type: "Internship",
-      status: "Completed",
-      description:
-        "Gained hands-on experience in full-stack development using MERN technologies during intensive 1-month internship program.",
-      points: [
-        "Developed Employee Management System modules using MERN stack architecture within tight deadlines",
-        "Implemented JWT authentication and Role-Based Access Control (RBAC) for secure user management",
-        "Built responsive UI components with React and Tailwind CSS for optimal user experience",
-        "Collaborated with development team in Agile environment and participated in daily standups",
-        "Learned industry best practices for code reviews, version control, and project delivery",
-      ],
-      tech: [
-        "MongoDB",
-        "Express.js",
-        "React",
-        "Node.js",
-        "JWT",
-        "Mongoose",
-        "Tailwind CSS",
-      ],
-      achievements: [
-        "Successfully completed all assigned tasks within the 1-month internship period",
-        "Gained practical experience in professional development workflow",
-        "Received positive feedback from supervisors on code quality and learning attitude",
-      ],
-    },
-  ],
+// ✅ Count all skills dynamically
+const totalSkills = Object.values(skills)
+  .reduce((sum, category) => sum + category.skills.length, 0);
 
-  // ✅ ENHANCED: Projects with proper demo management
-  projects: [
-    {
+console.log("Total skills:", totalSkills);
+
+const projects = [
+  {
       name: "Hotel Booking System",
       description:
         "Full‑stack booking application with user authentication, real‑time room availability checking, booking cancellations, and automated email confirmations for seamless hotel management.",
@@ -231,11 +174,11 @@ export const site = {
         "React",
         "JavaScript",
         "Tailwind CSS",
-        "Docker",
         "Date-fns",
         "Vite",
         "HTML5",
         "CSS3",
+        "Docker",
       ],
       links: {
         demo: "https://birthdaymath.vercel.app/",
@@ -257,41 +200,110 @@ export const site = {
       ],
     },
     {
-      name: "MovieFlix",
+  name: "MovieFlix",
+  description: "Netflix-inspired React application featuring movie browsing, search functionality, favorites management, and detailed movie information. Built with TMDB API integration for real-time movie data and modern responsive design.",
+  tech: [
+    "React",
+    "JavaScript", 
+    "Tailwind CSS",
+    "TMDB API",
+    "Context API",
+    "React Router",
+    "Axios",
+    "Vite"
+  ],
+  links: {
+    demo: "https://movieflix-beta-seven.vercel.app/",
+    code: "https://github.com/dhruvprajapati002/movieflix"
+  },
+  image: "/movieflix.png",
+  status: "completed",
+  featured: true,
+  category: "Frontend Development",
+  date: "2025",
+  demoAvailable: true,
+  features: [
+    "TMDB API integration",
+    "Movie search & filtering",
+    "Favorites & watchlist",
+    "Movie details & ratings", 
+    "Responsive Netflix-like UI",
+    "Context state management",
+    "Dynamic routing"
+  ]
+},
+
+];
+const totalProjects = projects.length;
+
+console.log("Total projects:", totalProjects);
+
+// src/data/site.js
+export const site = {
+  name: "Dhruv Prajapati",
+  role: "MERN Stack Developer",
+  location: "Mahesana, India",
+  summary:
+    "Aspiring full‑stack developer with 1+ year of hands-on experience in MERN stack. Built secure, responsive applications with authentication, CRUD operations, and modern deployments through personal projects and internship experience.",
+
+  avatar: "/profile-image.jpg",
+  taglines: [
+    "MERN Stack Developer",
+    "Full-Stack Engineer",
+    "Problem Solver",
+    "Code Enthusiast",
+  ],
+
+  links: {
+    email: "dhruvprajapati0023@gmail.com",
+    phone: "+91-6351987712",
+    github: "https://github.com/dhruvprajapati002/",
+    linkedin: "https://www.linkedin.com/in/dhruv-prajapati-204549278/",
+    resume: "/resume.pdf",
+    twitter: "",
+    portfolio: "",
+  },
+
+  // Skills configuration
+  skills: skills,
+
+  // ✅ UPDATED: Corrected experience duration and description
+  experience: [
+    {
+      title: "MERN Stack Developer Intern",
+      company: "CreArt Solutions Pvt. Ltd.",
+      location: "Ahmedabad, Gujarat",
+      date: "June 2025", // ✅ Updated to reflect 1 month duration
+      duration: "1 Month",
+      type: "Internship",
+      status: "Completed",
       description:
-        "Netflix-inspired React application featuring movie browsing, search functionality, favorites management, and detailed movie information. Built with TMDB API integration for real-time movie data and modern responsive design.",
-      tech: [
-        "React",
-        "JavaScript",
-        "Tailwind CSS",
-        "TMDB API",
-        "Context API",
-        "React Router",
-        "Axios",
-        "Vite",
+        "Gained hands-on experience in full-stack development using MERN technologies during intensive 1-month internship program.",
+      points: [
+        "Developed Employee Management System modules using MERN stack architecture within tight deadlines",
+        "Implemented JWT authentication and Role-Based Access Control (RBAC) for secure user management",
+        "Built responsive UI components with React and Tailwind CSS for optimal user experience",
+        "Collaborated with development team in Agile environment and participated in daily standups",
+        "Learned industry best practices for code reviews, version control, and project delivery",
       ],
-      links: {
-        demo: "https://movieflix-beta-seven.vercel.app/",
-        code: "https://github.com/dhruvprajapati002/movieflix",
-      },
-      image: "/movieflix.png",
-      status: "completed",
-      featured: true,
-      category: "Frontend Development",
-      date: "2025",
-      demoAvailable: true,
-      features: [
-        "TMDB API integration",
-        "Movie search & filtering",
-        "Favorites & watchlist",
-        "Movie details & ratings",
-        "Responsive Netflix-like UI",
-        "Context state management",
-        "Dynamic routing",
+      tech: [
+        "MongoDB",
+        "Express.js",
+        "React",
+        "Node.js",
+        "JWT",
+        "Mongoose",
+        "Tailwind CSS",
+      ],
+      achievements: [
+        "Successfully completed all assigned tasks within the 1-month internship period",
+        "Gained practical experience in professional development workflow",
+        "Received positive feedback from supervisors on code quality and learning attitude",
       ],
     },
   ],
 
+  projects: projects,
   // ✅ UPDATED: Corrected education details
   education: [
     {
@@ -376,12 +388,13 @@ export const site = {
       ],
     },
   ],
+  
 
   // ✅ UPDATED: Realistic stats reflecting actual experience
   stats: {
-    projectsCompleted: 4, // ✅ Based on the 4 projects listed
+    projectsCompleted: totalProjects, // ✅ Based on the 4 projects listed
     yearsExperience: 1, // ✅ Updated to reflect 1+ year of learning experience
-    technologiesUsed: 20, // ✅ Based on the technologies across all skills
+    technologiesUsed: totalSkills, // ✅ Based on the technologies across all skills
     // ✅ REMOVED: happyClients stat as requested
   },
 };
