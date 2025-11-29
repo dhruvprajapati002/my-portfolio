@@ -1,38 +1,29 @@
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { 
   ArrowUp, 
   Heart, 
   Github, 
   Linkedin, 
-  Mail, 
-  Twitter,
+  Mail,
   MapPin,
   Coffee,
   Code,
   Sparkles,
-  ExternalLink,
   Send,
   Star,
   Zap,
   Globe,
-  Calendar,
-  Award,
-  TrendingUp,
-  Users,
-  Download,
-  Check,
   Clock,
-  Briefcase,
-  MessageCircle,
-  GraduationCap,
+  Check,
   ChevronRight,
-  Phone
+  GraduationCap,
+  Users
 } from "lucide-react";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { site } from "../data/site";
 
-// ✅ REDESIGNED: Minimal floating elements with subtle animations
+// ✅ FIXED: Minimal floating elements
 const FloatingElement = ({ icon: Icon, delay = 0, className = "" }) => {
   const { isDark } = useTheme();
   
@@ -60,7 +51,7 @@ const FloatingElement = ({ icon: Icon, delay = 0, className = "" }) => {
   );
 };
 
-// ✅ REDESIGNED: Clean social link cards
+// ✅ FIXED: Social link cards
 const SocialLink = ({ href, icon: Icon, label, count, bgGradient }) => {
   const { isDark } = useTheme();
   
@@ -82,7 +73,6 @@ const SocialLink = ({ href, icon: Icon, label, count, bgGradient }) => {
       } hover:border-indigo-300 hover:shadow-2xl hover:shadow-indigo-500/10`}
       aria-label={`${label} - ${count}`}
     >
-      {/* Gradient overlay on hover */}
       <motion.div
         className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${bgGradient}`}
         initial={{ opacity: 0 }}
@@ -120,7 +110,7 @@ const SocialLink = ({ href, icon: Icon, label, count, bgGradient }) => {
   );
 };
 
-// ✅ REDESIGNED: Elegant quick links
+// ✅ FIXED: Quick links
 const QuickLink = ({ href, children, icon: Icon, description }) => {
   const { isDark } = useTheme();
   
@@ -166,7 +156,7 @@ const QuickLink = ({ href, children, icon: Icon, description }) => {
   );
 };
 
-// ✅ REDESIGNED: Enhanced newsletter with better UX
+// ✅ FIXED: Newsletter signup
 const NewsletterSignup = () => {
   const { isDark } = useTheme();
   const [email, setEmail] = useState("");
@@ -290,14 +280,14 @@ const NewsletterSignup = () => {
   );
 };
 
-// ✅ REDESIGNED: Clean stats grid
+// ✅ FIXED: Stats section
 const StatsSection = () => {
   const { isDark } = useTheme();
   
   const stats = [
     {
       label: "Projects Built",
-      value: site.stats?.projectsCompleted || 4,
+      value: site.stats?.projectsCompleted || 6,
       icon: Code,
       gradient: "from-blue-500 to-cyan-500"
     },
@@ -336,7 +326,6 @@ const StatsSection = () => {
               : "bg-white/50 border-gray-200/50"
           }`}
         >
-          {/* Animated background */}
           <motion.div
             className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
           />
@@ -367,16 +356,18 @@ const StatsSection = () => {
   );
 };
 
-// ✅ REDESIGNED: Sleek back to top button
+// ✅ FIXED: Back to top button with new API
 const BackToTop = () => {
   const { isDark } = useTheme();
   const [isVisible, setIsVisible] = useState(false);
   const { scrollY } = useScroll();
   
+  // ✅ FIX: Use new Framer Motion API with proper cleanup
   useEffect(() => {
-    const unsubscribe = scrollY.onChange((latest) => {
+    const unsubscribe = scrollY.on("change", (latest) => {
       setIsVisible(latest > 500);
     });
+    
     return () => unsubscribe();
   }, [scrollY]);
 
@@ -404,7 +395,6 @@ const BackToTop = () => {
     >
       <ArrowUp className="w-7 h-7 group-hover:-translate-y-1 transition-transform duration-300" />
       
-      {/* Ripple effect */}
       <motion.div
         className="absolute inset-0 rounded-full bg-white/20"
         animate={{
@@ -421,7 +411,7 @@ const BackToTop = () => {
   );
 };
 
-// ✅ MAIN: Completely redesigned footer
+// ✅ MAIN: Fixed Footer component
 export default function Footer() {
   const { isDark } = useTheme();
   const footerRef = useRef(null);
@@ -708,7 +698,9 @@ export default function Footer() {
                     : "border-gray-300 text-gray-700 hover:border-indigo-500 hover:text-indigo-600"
                 }`}
               >
-                <Download className="w-6 h-6 group-hover:translate-y-1 transition-transform duration-300" />
+                <svg className="w-6 h-6 group-hover:translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
                 <span>Download Resume</span>
               </motion.a>
             )}

@@ -668,7 +668,7 @@ export default function Experience() {
             ))}
           </div>
 
-          {/* ✅ UPDATED: Stats with realistic numbers for aspiring developer */}
+          {/* ✅ UPDATED: Stats with realistic numbers for aspiring developer
           <motion.section
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -759,7 +759,7 @@ export default function Experience() {
                 </motion.div>
               ))}
             </div>
-          </motion.section>
+          </motion.section> */}
         </motion.div>
       </div>
     </Section>

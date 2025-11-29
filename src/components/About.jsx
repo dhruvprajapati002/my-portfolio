@@ -13,21 +13,19 @@ import {
   Heart,
   MapPin,
   Calendar,
-  Trophy,
   Target,
   BookOpen,
-  Award,
   Coffee,
   GraduationCap,
   Lightbulb
 } from "lucide-react";
 
-// ✅ UPDATED: Features reflecting aspiring developer journey
+// Features with descriptions
 const getFeatures = (isDark) => [
   {
     icon: User,
     title: "Who I Am",
-    description: `${site.summary || "Aspiring full‑stack developer with 1+ year of hands-on experience in MERN stack. Built secure, responsive applications through personal projects and internship experience."} I'm based in ${site.location || "Mahesana, India"} and passionate about turning ideas into digital reality.`,
+    description: `${site.summary || "Aspiring full‑stack developer with 1+ year of hands-on experience in MERN stack. Built secure, responsive applications through personal projects and internship experience."} I'm based in ${site.location || "Mahesana, India"}.`,
     accent: "from-blue-500 to-cyan-500",
     bgAccent: isDark ? "rgba(59, 130, 246, 0.08)" : "rgba(59, 130, 246, 0.12)",
     hoverColor: "group-hover:text-blue-500"
@@ -35,7 +33,7 @@ const getFeatures = (isDark) => [
   {
     icon: Code,
     title: "Learning Journey",
-    description: "Self-taught MERN stack developer with 1+ year of hands-on experience. Completed a professional internship and built multiple full-stack applications. Continuously learning and staying updated with modern development practices.",
+    description: "Self-taught MERN stack developer with 1+ year of hands-on experience. Completed professional internship and built multiple full-stack applications with modern practices.",
     accent: "from-purple-500 to-pink-500", 
     bgAccent: isDark ? "rgba(139, 92, 246, 0.08)" : "rgba(139, 92, 246, 0.12)",
     hoverColor: "group-hover:text-purple-500"
@@ -43,14 +41,14 @@ const getFeatures = (isDark) => [
   {
     icon: Lightbulb,
     title: "My Approach",
-    description: "Focus on writing clean, maintainable code with modern UI design principles. I believe in continuous learning, best practices, and building user-centric applications that solve real problems through innovative solutions.",
+    description: "Focus on clean, maintainable code with modern UI design. Continuous learning, best practices, and building user-centric applications that solve real problems.",
     accent: "from-orange-500 to-red-500",
     bgAccent: isDark ? "rgba(249, 115, 22, 0.08)" : "rgba(249, 115, 22, 0.12)",
     hoverColor: "group-hover:text-orange-500"
   },
 ];
 
-// ✅ ENHANCED: Optimized floating icon with theme awareness
+// Floating icon component
 const FloatingIcon = ({ icon: Icon, delay = 0, className = "", isDark }) => (
   <motion.div
     initial={{ y: 0, opacity: 0.2 }}
@@ -78,7 +76,7 @@ const FloatingIcon = ({ icon: Icon, delay = 0, className = "", isDark }) => (
   </motion.div>
 );
 
-// ✅ ENHANCED: Stats counter with better accessibility
+// Stats counter
 const StatsCounter = ({ value, label, suffix = "", delay = 0 }) => {
   const [count, setCount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -139,7 +137,7 @@ const StatsCounter = ({ value, label, suffix = "", delay = 0 }) => {
   );
 };
 
-// ✅ UPDATED: Personal info reflecting current status
+// Personal info badges
 const PersonalInfo = () => {
   const { isDark } = useTheme();
   
@@ -167,7 +165,7 @@ const PersonalInfo = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
       viewport={{ once: true }}
-      className="flex flex-wrap justify-center gap-4 mb-12"
+      className="flex flex-wrap justify-center gap-3 mb-12"
       role="list"
       aria-label="Personal information"
     >
@@ -178,15 +176,15 @@ const PersonalInfo = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           whileHover={{ scale: 1.05, y: -2 }}
           transition={{ delay: index * 0.1, duration: 0.3 }}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-200 ${
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-200 ${
             isDark
               ? "bg-gray-800/80 border-gray-700/60 hover:border-indigo-700"
               : "bg-white/80 border-gray-200/60 hover:border-indigo-200"
           } backdrop-blur-sm hover:shadow-lg`}
           role="listitem"
         >
-          <item.icon className={`w-4 h-4 ${item.color}`} />
-          <span className={`font-medium text-sm ${
+          <item.icon className={`w-3.5 h-3.5 ${item.color}`} />
+          <span className={`font-medium text-xs ${
             isDark ? "text-gray-300" : "text-gray-700"
           }`}>
             {item.text}
@@ -197,15 +195,14 @@ const PersonalInfo = () => {
   );
 };
 
-// ✅ MAIN: Enhanced About component with updated positioning
+// ✨ MAIN Component with smaller cards
 export default function About() {
   const { isDark } = useTheme();
   const [hoveredCard, setHoveredCard] = useState(null);
 
-  // ✅ UPDATED: Realistic stats reflecting actual experience
   const stats = useMemo(() => ({
-    projects: site.stats?.projectsCompleted || 4, // ✅ Based on actual projects
-    learning: site.stats?.yearsExperience || 1, // ✅ Changed from "experience" to "learning"
+    projects: site.stats?.projectsCompleted || 6,
+    learning: site.stats?.yearsExperience || 1,
     technologies: site.stats?.technologiesUsed || 
       Object.values(site.skills || {}).reduce((total, group) => 
         total + (group.skills?.length || 0), 0
@@ -229,14 +226,12 @@ export default function About() {
     hidden: { 
       opacity: 0, 
       y: 50,
-      scale: 0.95,
-      rotateX: 10
+      scale: 0.95
     },
     visible: { 
       opacity: 1, 
       y: 0,
       scale: 1,
-      rotateX: 0,
       transition: {
         duration: 0.7,
         ease: [0.22, 1, 0.36, 1]
@@ -259,44 +254,14 @@ export default function About() {
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          <FloatingIcon 
-            icon={Star} 
-            delay={0} 
-            className="top-20 left-10" 
-            isDark={isDark} 
-          />
-          <FloatingIcon 
-            icon={Zap} 
-            delay={1} 
-            className="top-40 right-20" 
-            isDark={isDark} 
-          />
-          <FloatingIcon 
-            icon={Heart} 
-            delay={2} 
-            className="bottom-32 left-20" 
-            isDark={isDark} 
-          />
-          <FloatingIcon 
-            icon={Code} 
-            delay={0.5} 
-            className="bottom-20 right-10" 
-            isDark={isDark} 
-          />
-          <FloatingIcon 
-            icon={Target} 
-            delay={1.5} 
-            className="top-1/3 left-1/4" 
-            isDark={isDark} 
-          />
-          <FloatingIcon 
-            icon={BookOpen} 
-            delay={0.8} 
-            className="bottom-1/3 right-1/4" 
-            isDark={isDark} 
-          />
+          <FloatingIcon icon={Star} delay={0} className="top-20 left-10" isDark={isDark} />
+          <FloatingIcon icon={Zap} delay={1} className="top-40 right-20" isDark={isDark} />
+          <FloatingIcon icon={Heart} delay={2} className="bottom-32 left-20" isDark={isDark} />
+          <FloatingIcon icon={Code} delay={0.5} className="bottom-20 right-10" isDark={isDark} />
+          <FloatingIcon icon={Target} delay={1.5} className="top-1/3 left-1/4" isDark={isDark} />
+          <FloatingIcon icon={BookOpen} delay={0.8} className="bottom-1/3 right-1/4" isDark={isDark} />
           
-          {/* Theme-aware gradient orbs */}
+          {/* Gradient orbs */}
           <motion.div
             animate={{ 
               rotate: 360,
@@ -336,13 +301,13 @@ export default function About() {
           viewport={{ once: true, margin: "-100px" }}
           className="relative z-10 mx-auto max-w-6xl"
         >
-          {/* ✅ UPDATED: Header with aspiring developer focus */}
+          {/* Header */}
           <motion.header
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <motion.div 
               initial={{ scale: 0.8, opacity: 0 }}
@@ -370,7 +335,7 @@ export default function About() {
             </h2>
             
             <motion.p 
-              className={`text-xl max-w-3xl mx-auto leading-relaxed mb-8 ${
+              className={`text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-8 ${
                 isDark ? "text-gray-300" : "text-gray-600"
               }`}
               initial={{ opacity: 0 }}
@@ -384,39 +349,25 @@ export default function About() {
             <PersonalInfo />
           </motion.header>
 
-          {/* ✅ UPDATED: Stats section with realistic labels */}
+          {/* Stats section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="grid grid-cols-3 gap-4 md:gap-8 mb-16 max-w-2xl mx-auto"
+            className="grid grid-cols-3 gap-4 md:gap-8 mb-12 max-w-2xl mx-auto"
             aria-labelledby="stats-heading"
           >
             <h3 id="stats-heading" className="sr-only">Learning Statistics</h3>
-            <StatsCounter 
-              value={stats.projects} 
-              label="Projects Built" 
-              delay={0} 
-            />
-            <StatsCounter 
-              value={stats.learning} 
-              label="Year Learning" // ✅ Changed from "Years Experience"
-              suffix="+" 
-              delay={0.1} 
-            />
-            <StatsCounter 
-              value={stats.technologies} 
-              label="Technologies" 
-              suffix="+" 
-              delay={0.2} 
-            />
+            <StatsCounter value={stats.projects} label="Projects Built" delay={0} />
+            <StatsCounter value={stats.learning} label="Year Learning" suffix="+" delay={0.1} />
+            <StatsCounter value={stats.technologies} label="Technologies" suffix="+" delay={0.2} />
           </motion.section>
 
-          {/* Feature cards */}
+          {/* ✨ SMALLER Feature cards */}
           <motion.section 
             variants={containerVariants}
-            className="grid md:grid-cols-3 gap-8 mb-16"
+            className="grid md:grid-cols-3 gap-6 mb-12"
             aria-labelledby="features-heading"
           >
             <h3 id="features-heading" className="sr-only">Key Features and Learning Journey</h3>
@@ -425,7 +376,7 @@ export default function About() {
                 key={feature.title}
                 variants={cardVariants}
                 whileHover={{ 
-                  y: -12,
+                  y: -8,
                   scale: 1.02,
                   transition: { duration: 0.3 }
                 }}
@@ -433,7 +384,7 @@ export default function About() {
                 onHoverEnd={() => setHoveredCard(null)}
                 className="group relative h-full cursor-default"
               >
-                <div className={`absolute inset-0 rounded-2xl backdrop-blur-sm shadow-xl group-hover:shadow-2xl transition-all duration-500 border ${
+                <div className={`absolute inset-0 rounded-2xl backdrop-blur-sm shadow-lg group-hover:shadow-xl transition-all duration-500 border ${
                   isDark
                     ? "bg-gray-800/90 border-gray-700/60"
                     : "bg-white/90 border-gray-200/60"
@@ -460,9 +411,9 @@ export default function About() {
                   }}
                 />
 
-                {/* Card Content */}
-                <div className="relative p-6 lg:p-8 h-full flex flex-col">
-                  {/* Icon */}
+                {/* ✨ SMALLER Card Content */}
+                <div className="relative p-5 h-full flex flex-col">
+                  {/* Smaller Icon */}
                   <motion.div
                     whileHover={{ 
                       scale: 1.1,
@@ -470,16 +421,16 @@ export default function About() {
                       y: -2
                     }}
                     transition={{ duration: 0.4 }}
-                    className="mb-6 flex justify-center"
+                    className="mb-4 flex justify-center"
                   >
-                    <div className={`relative p-4 rounded-2xl bg-gradient-to-r ${feature.accent} shadow-lg`}>
+                    <div className={`relative p-3 rounded-xl bg-gradient-to-r ${feature.accent} shadow-lg`}>
                       <feature.icon 
-                        className="w-8 h-8 text-white" 
+                        className="w-6 h-6 text-white" 
                         aria-hidden="true" 
                       />
                       
                       <motion.div
-                        className="absolute inset-0 rounded-2xl blur-xl"
+                        className="absolute inset-0 rounded-xl blur-lg"
                         animate={{ 
                           opacity: hoveredCard === index ? 0.4 : 0,
                           scale: hoveredCard === index ? 1.3 : 1
@@ -496,15 +447,15 @@ export default function About() {
                     </div>
                   </motion.div>
 
-                  {/* Content */}
+                  {/* Compact Content */}
                   <div className="text-center flex-1 flex flex-col justify-between">
                     <div>
-                      <h4 className={`text-xl lg:text-2xl font-bold mb-4 transition-colors duration-300 ${
+                      <h4 className={`text-lg font-bold mb-3 transition-colors duration-300 ${
                         isDark ? "text-white" : "text-gray-900"
                       } ${feature.hoverColor}`}>
                         {feature.title}
                       </h4>
-                      <p className={`leading-relaxed ${
+                      <p className={`text-sm leading-relaxed ${
                         isDark ? "text-gray-300" : "text-gray-600"
                       }`}>
                         {feature.description}
@@ -512,7 +463,7 @@ export default function About() {
                     </div>
 
                     <motion.div
-                      className="mt-6"
+                      className="mt-4"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ 
                         opacity: hoveredCard === index ? 1 : 0,
@@ -520,9 +471,9 @@ export default function About() {
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className={`inline-flex items-center gap-2 text-sm font-semibold bg-gradient-to-r ${feature.accent} bg-clip-text text-transparent`}>
+                      <div className={`inline-flex items-center gap-2 text-xs font-semibold bg-gradient-to-r ${feature.accent} bg-clip-text text-transparent`}>
                         Learn More 
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-3 h-3" />
                       </div>
                     </motion.div>
                   </div>
@@ -538,15 +489,15 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
               viewport={{ once: true }}
-              className="mb-16 text-center"
+              className="mb-12 text-center"
               aria-labelledby="skills-heading"
             >
-              <h3 id="skills-heading" className={`text-2xl font-bold mb-8 ${
+              <h3 id="skills-heading" className={`text-xl font-bold mb-6 ${
                 isDark ? "text-white" : "text-gray-900"
               }`}>
                 Technologies I Work With
               </h3>
-              <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+              <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
                 {Object.values(site.skills)
                   .flatMap(group => group.skills || [])
                   .slice(0, 12)
@@ -558,7 +509,7 @@ export default function About() {
                       whileHover={{ scale: 1.1, y: -2 }}
                       transition={{ delay: index * 0.05, duration: 0.3 }}
                       viewport={{ once: true }}
-                      className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-default ${
+                      className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 cursor-default ${
                         isDark
                           ? "bg-gradient-to-r from-indigo-900/30 to-purple-900/30 text-indigo-300 border-indigo-800 hover:shadow-lg hover:shadow-indigo-500/25"
                           : "bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 border-indigo-100 hover:shadow-lg hover:shadow-indigo-500/25"
@@ -571,7 +522,7 @@ export default function About() {
             </motion.section>
           )}
 
-          {/* ✅ UPDATED: Bottom CTA with learning focus */}
+          {/* Bottom CTA */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -1,9 +1,11 @@
-import { motion, useInView, useAnimation } from "framer-motion";
-import { useMemo, useRef, useState, useEffect, useCallback } from "react";
+// src/components/Skills.jsx
+import { motion, useInView } from "framer-motion";
+import { useMemo, useRef, useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { site } from "../data/site";
+import Section from "./Section";
 
-// ✅ Import proper technology icons from react-icons
+// Icons imports
 import { 
   FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, 
   FaGitAlt, FaDocker, FaPhp, FaDatabase, FaServer, FaCog
@@ -12,8 +14,9 @@ import {
   SiMongodb, SiExpress, SiTypescript, SiNextdotjs,
   SiTailwindcss, SiVite, SiVercel, SiPostman, SiMysql
 } from 'react-icons/si';
+import { Sparkles, Zap, Code, Target } from "lucide-react";
 
-// ✅ UPDATED: Skills data with proper icons and colors
+// Skills data with proper icons and colors
 const skillsData = [
   // Frontend Technologies
   { name: "React", icon: FaReact, color: "#61DAFB", category: "frontend" },
@@ -39,7 +42,7 @@ const skillsData = [
   { name: "Vercel", icon: SiVercel, color: "#000000", category: "tools" },
 ];
 
-// ✅ Category configurations with proper icons
+// Category configurations
 const categoryConfig = {
   "Frontend Development": {
     icon: FaReact,
@@ -57,11 +60,11 @@ const categoryConfig = {
     icon: FaDatabase,
     color: "from-purple-500 to-pink-500",
     bgColor: "#8B5CF6",
-    skills: ["MongoDB", "Mongoose", "MongoDB Atlas", "MySQL", "Git", "GitHub", "Postman", "Docker", "Vercel/Render"]
+    skills: ["MongoDB", "MongoDB Atlas", "MySQL", "Git", "GitHub", "Postman", "Docker", "Vercel/Render"]
   }
 };
 
-// ✅ Enhanced floating particles
+// Floating particles
 const FloatingParticles = () => {
   const { isDark } = useTheme();
   
@@ -114,85 +117,7 @@ const FloatingParticles = () => {
   );
 };
 
-// ✅ Enhanced section header
-const SectionHeader = () => {
-  const { isDark } = useTheme();
-  
-  return (
-    <motion.header 
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-      className="text-center mb-20"
-    >
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        viewport={{ once: true }}
-        className={`inline-flex items-center gap-3 px-6 py-3 backdrop-blur-sm rounded-full mb-8 border ${
-          isDark
-            ? "bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border-indigo-700/30"
-            : "bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border-indigo-200/30"
-        }`}
-      >
-        <motion.div
-          animate={{ rotate: [0, 360] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-        >
-          <FaReact className={`w-5 h-5 ${
-            isDark ? "text-indigo-400" : "text-indigo-600"
-          }`} />
-        </motion.div>
-        <span className={`text-sm font-bold tracking-wider uppercase ${
-          isDark ? "text-indigo-300" : "text-indigo-700"
-        }`}>
-          Technical Expertise
-        </span>
-      </motion.div>
-      
-      <motion.h2 
-        className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        viewport={{ once: true }}
-      >
-        <span className="inline-block bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-          Skills &
-        </span>
-        <br />
-        <motion.span 
-          className="inline-block bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent"
-          initial={{ x: -50, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          Technologies
-        </motion.span>
-      </motion.h2>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.8 }}
-        viewport={{ once: true }}
-        className="max-w-4xl mx-auto"
-      >
-        <p className={`text-lg md:text-xl leading-relaxed mb-6 ${
-          isDark ? "text-gray-300" : "text-gray-600"
-        }`}>
-          Building exceptional digital experiences with modern tools and frameworks, 
-          from frontend interfaces to backend systems and deployment pipelines.
-        </p>
-      </motion.div>
-    </motion.header>
-  );
-};
-
-// ✅ Skills grid component with proper icons
+// Skills grid component
 const SkillsGrid = () => {
   const { isDark } = useTheme();
 
@@ -337,7 +262,7 @@ const SkillsGrid = () => {
   );
 };
 
-// ✅ Category sections with technology lists
+// Category sections
 const CategorySections = () => {
   const { isDark } = useTheme();
   const groups = site.skills || {};
@@ -420,9 +345,6 @@ const CategorySections = () => {
                     delay: index * 0.2 + techIndex * 0.05 + 0.5,
                     duration: 0.4
                   }}
-                  style={{
-                    '--hover-color': config.bgColor
-                  }}
                 >
                   {tech}
                 </motion.span>
@@ -435,102 +357,100 @@ const CategorySections = () => {
   );
 };
 
-// ✅ MAIN: Enhanced Skills component
+// MAIN: Skills component with Section wrapper
 export default function Skills() {
   const { isDark } = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-20%" });
 
   return (
-    <section 
-      id="skills" 
-      className={`relative py-24 md:py-32 overflow-hidden ${
-        isDark
-          ? "bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900"
-          : "bg-gradient-to-br from-slate-50 via-sky-50 to-indigo-50"
-      }`}
-      role="region"
-      aria-labelledby="skills-heading"
+    <Section
+      id="skills"
+      title="Skills"
+      subtitle="Technologies and tools I use to build amazing projects"
     >
-      {/* Enhanced background effects */}
-      <div className="absolute inset-0">
-        <motion.div 
-          className="absolute top-20 -left-20 w-96 h-96 rounded-full blur-3xl"
-          style={{ 
-            background: isDark
-              ? "radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(0, 0, 0, 0) 70%)"
-              : "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 70%)"
-          }}
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: isDark ? [0.08, 0.15, 0.08] : [0.15, 0.25, 0.15]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div 
-          className="absolute bottom-20 -right-20 w-[500px] h-[500px] rounded-full blur-3xl"
-          style={{ 
-            background: isDark
-              ? "radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, rgba(0, 0, 0, 0) 70%)"
-              : "radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(0, 0, 0, 0) 70%)"
-          }}
-          animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: isDark ? [0.06, 0.12, 0.06] : [0.12, 0.2, 0.12]
-          }}
-          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-        />
-      </div>
-
-      <FloatingParticles />
-
-      <motion.div 
-        ref={ref}
-        className="relative max-w-7xl mx-auto px-6 lg:px-8"
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        <SectionHeader />
-        <SkillsGrid />
-        <CategorySections />
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-center mt-20"
-        >
-          <motion.a
-            href="#contact"
-            whileHover={{ 
-              scale: 1.05,
-              y: -4,
-              transition: { duration: 0.3 }
+      <div className="relative">
+        {/* Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div 
+            className="absolute top-20 -left-20 w-96 h-96 rounded-full blur-3xl opacity-20"
+            style={{ 
+              background: isDark
+                ? "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 70%)"
+                : "radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(0, 0, 0, 0) 70%)"
             }}
-            whileTap={{ scale: 0.95 }}
-            className="group inline-flex items-center gap-4 px-12 py-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-lg rounded-3xl shadow-2xl hover:shadow-4xl transition-all duration-500 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            animate={{ 
+              scale: [1, 1.2, 1],
+              x: [0, 30, 0],
+              y: [0, -20, 0]
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+          />
+          <motion.div 
+            className="absolute bottom-20 -right-20 w-[500px] h-[500px] rounded-full blur-3xl opacity-20"
+            style={{ 
+              background: isDark
+                ? "radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(0, 0, 0, 0) 70%)"
+                : "radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0, 0, 0, 0) 70%)"
+            }}
+            animate={{ 
+              scale: [1, 1.3, 1],
+              x: [0, -30, 0],
+              y: [0, 20, 0]
+            }}
+            transition={{ duration: 10, repeat: Infinity, delay: 2 }}
+          />
+        </div>
+
+        <FloatingParticles />
+
+        <motion.div 
+          ref={ref}
+          className="relative max-w-7xl mx-auto"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <SkillsGrid />
+          <CategorySections />
+
+          {/* CTA Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-center mt-20"
           >
-            <FaReact className="w-6 h-6 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
-            <span className="relative z-10">Let's Build Something Amazing</span>
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              className="relative z-10"
+            <motion.a
+              href="#contact"
+              whileHover={{ 
+                scale: 1.05,
+                y: -4,
+                transition: { duration: 0.3 }
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="group inline-flex items-center gap-4 px-12 py-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-lg rounded-3xl shadow-2xl hover:shadow-4xl transition-all duration-500 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              <FaCog className="w-6 h-6" />
-            </motion.div>
-            
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.5 }}
-            />
-          </motion.a>
+              <Zap className="w-6 h-6 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+              <span className="relative z-10">Let's Build Something Amazing</span>
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                className="relative z-10"
+              >
+                <FaCog className="w-6 h-6" />
+              </motion.div>
+              
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.5 }}
+              />
+            </motion.a>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    </section>
+      </div>
+    </Section>
   );
 }

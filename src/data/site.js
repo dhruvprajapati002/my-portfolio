@@ -42,7 +42,7 @@ const skills = {
 const totalSkills = Object.values(skills)
   .reduce((sum, category) => sum + category.skills.length, 0);
 
-console.log("Total skills:", totalSkills);
+
 
 const projects = [
   {
@@ -236,7 +236,7 @@ const projects = [
 ];
 const totalProjects = projects.length;
 
-console.log("Total projects:", totalProjects);
+
 
 // src/data/site.js
 export const site = {
@@ -263,6 +263,61 @@ export const site = {
     twitter: "",
     portfolio: "",
   },
+
+   education: [
+    {
+      degree: "Bachelor of Computer Applications",
+      field: "Computer Science & Applications",
+      school: "Your College Name",
+      location: "Mahesana, Gujarat",
+      date: "2022 - 2025",
+      status: "In Progress",
+      gpa: "8.5",
+      description: "Pursuing comprehensive education in computer science fundamentals, programming, and software development.",
+      
+      // ✅ SIMPLIFIED: Journey timeline
+      journey: [
+        {
+          year: "2022",
+          title: "Started Learning",
+          icon: "rocket", // rocket, code, brain, heart
+          description: "Began my web development journey with HTML, CSS, and JavaScript",
+          color: "green"
+        },
+        {
+          year: "2023",
+          title: "MERN Stack",
+          icon: "code",
+          description: "Dove deep into React, Node.js, Express, and MongoDB",
+          color: "blue"
+        },
+        {
+          year: "2024",
+          title: "Real Projects",
+          icon: "brain",
+          description: "Built 5+ full-stack applications and completed internship",
+          color: "purple"
+        },
+        {
+          year: "Now",
+          title: "Ready for More",
+          icon: "heart",
+          description: "Seeking opportunities to contribute to amazing projects",
+          color: "red"
+        }
+      ],
+      
+      // Core subjects
+      subjects: [
+        "Data Structures & Algorithms",
+        "Database Management Systems",
+        "Web Technologies",
+        "Software Engineering",
+        "Computer Networks",
+        "Operating Systems"
+      ]
+    }
+  ],
 
   // Skills configuration
   skills: skills,
@@ -304,90 +359,6 @@ export const site = {
   ],
 
   projects: projects,
-  // ✅ UPDATED: Corrected education details
-  education: [
-    {
-      degree: "Bachelor of Engineering (BE)",
-      field: "Computer Science and Engineering",
-      school: "Saffrony Institute Of Technology", // ✅ Updated with actual university
-      location: "Mahesana, Gujarat",
-      startDate: "2022",
-      endDate: "2026",
-      date: "2022 - 2026",
-      status: "In Progress",
-      gpa: "8.5/10",
-      description:
-        "Comprehensive study of computer science fundamentals including data structures, algorithms, software engineering, database systems, and web development with focus on practical application through projects.",
-      subjects: [
-        "Data Structures & Algorithms",
-        "Software Engineering",
-        "Database Management Systems",
-        "Web Development",
-        "Computer Networks",
-        "Operating Systems",
-        "Compiler Design",
-        "Artificial Intelligence",
-      ],
-      achievements: [
-        "Maintained consistent academic performance with 8.5 CGPA",
-        "Active participation in coding competitions and hackathons",
-        "Completed multiple technical projects demonstrating MERN stack proficiency",
-        "Self-learned advanced web development technologies beyond curriculum",
-      ],
-      projects: [
-        "Hotel Booking System",
-        "Medical Image Enhancer",
-        "Weather Dashboard",
-        "Password Manager",
-      ],
-    },
-    {
-      degree: "Higher Secondary Certificate (HSC)",
-      field: "Science Stream (PCM + Computer Science)",
-      school: "Your Higher Secondary School", // ✅ Update with actual school name
-      location: "Mahesana, Gujarat",
-      startDate: "2020",
-      endDate: "2022",
-      date: "2020 - 2022",
-      status: "Completed",
-      percentage: "74%",
-      description:
-        "Focused on Physics, Chemistry, Mathematics, and Computer Science fundamentals with strong emphasis on analytical thinking and problem-solving skills development.",
-      subjects: [
-        "Physics",
-        "Chemistry",
-        "Mathematics",
-        "Computer Science",
-        "English",
-        "Environmental Science",
-      ],
-      achievements: [
-        "Scored 74% in Gujarat Board examinations",
-        "Developed strong foundation in Mathematics and Computer Science",
-        "Started learning web development during final year",
-        "Participated in school science exhibitions and coding workshops",
-      ],
-    },
-    {
-      degree: "Secondary School Certificate (SSC)",
-      field: "General Studies",
-      school: "Your Secondary School", // ✅ Update with actual school name
-      location: "Mahesana, Gujarat",
-      startDate: "2018",
-      endDate: "2020",
-      date: "2018 - 2020",
-      status: "Completed",
-      percentage: "80%",
-      description:
-        "Comprehensive foundation in core subjects with emphasis on analytical thinking, communication skills, and building strong academic fundamentals.",
-      achievements: [
-        "Scored 80% in Gujarat Board examinations",
-        "Consistent academic performance across all subjects",
-        "Active participation in extra-curricular activities",
-        "Developed interest in technology and computer applications",
-      ],
-    },
-  ],
   
 
   // ✅ UPDATED: Realistic stats reflecting actual experience
