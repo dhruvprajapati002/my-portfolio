@@ -25,6 +25,7 @@ const Projects = lazy(() => import("./components/Projects"));
 const Experience = lazy(() => import("./components/Experience"));
 const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
+const Chatbot = lazy(() => import("./components/Chatbot"));
 
 // ✅ ENHANCED: Loading Screen with context theme
 const LoadingScreen = ({ progress }) => {
@@ -448,9 +449,10 @@ const BackgroundEffects = () => {
   );
 };
 
-// Back to Top Button
+// Enhanced Back to Top Button with Label
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { isDark } = useTheme();
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -472,16 +474,36 @@ const BackToTop = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          initial={{ opacity: 0, scale: 0, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0, y: 20 }}
+          initial={{ opacity: 0, scale: 0, x: -20 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          exit={{ opacity: 0, scale: 0, x: -20 }}
           onClick={scrollToTop}
-          whileHover={{ scale: 1.1, y: -2 }}
+          whileHover={{ scale: 1.1, y: -4 }}
           whileTap={{ scale: 0.9 }}
-          className="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40 group focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className={`fixed bottom-8 left-8 p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 z-40 group ${
+            isDark
+              ? "bg-gradient-to-r from-indigo-600 to-purple-600"
+              : "bg-gradient-to-r from-indigo-500 to-purple-500"
+          } text-white`}
           aria-label="Back to top"
         >
-          <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+          <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform duration-200" />
+          
+          {/* Tooltip on hover */}
+          <motion.span
+            initial={{ opacity: 0, x: -10 }}
+            whileHover={{ opacity: 1, x: 0 }}
+            className={`absolute left-full ml-3 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap pointer-events-none ${
+              isDark
+                ? "bg-gray-800 text-white border border-gray-700"
+                : "bg-white text-gray-900 border border-gray-200"
+            } shadow-lg`}
+          >
+            Back to Top
+          </motion.span>
+          
+          {/* Glow effect */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 -z-10" />
         </motion.button>
       )}
     </AnimatePresence>
@@ -608,6 +630,9 @@ export default function App() {
             <BackgroundEffects />
             <NetworkStatus />
             <BackToTop />
+            <Suspense fallback={<ComponentLoader name="Chatbot" />}>
+              <Chatbot />
+            </Suspense>
 
             {/* Header */}
             <Suspense fallback={<ComponentLoader name="Navigation" />}>
