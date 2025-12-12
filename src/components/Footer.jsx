@@ -740,7 +740,7 @@ export default function Footer() {
         </div>
       </motion.footer>
 
-      <BackToTop />
+      
     </>
   );
 }
