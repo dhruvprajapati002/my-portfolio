@@ -108,7 +108,7 @@ const CodeEditorWindow = () => {
       indent: 1 
     },
     { 
-      text: '  role: "MERN Stack Developer",', 
+      text: '  role: "Full Stack Developer",', 
       color: isDark ? "text-green-400" : "text-green-600", 
       indent: 1 
     },

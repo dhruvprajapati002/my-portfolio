@@ -29,6 +29,7 @@ const skills = {
       "MongoDB",
       "MongoDB Atlas",
       "MySQL",
+      "Opensearch",
       "Git",
       "GitHub",
       "Postman",
@@ -241,7 +242,7 @@ const totalProjects = projects.length;
 // src/data/site.js
 export const site = {
   name: "Dhruv Prajapati",
-  role: "MERN Stack Developer",
+  role: "Full Stack Developer",
   location: "Mahesana, India",
   summary:
     "Aspiring full‑stack developer with 1+ year of hands-on experience in MERN stack. Built secure, responsive applications with authentication, CRUD operations, and modern deployments through personal projects and internship experience.",

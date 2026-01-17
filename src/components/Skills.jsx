@@ -36,6 +36,7 @@ const skillsData = [
   // Database & Tools
   { name: "MongoDB", icon: SiMongodb, color: "#47A248", category: "database" },
   { name: "MySQL", icon: SiMysql, color: "#4479A1", category: "database" },
+  {name: "OpenSearch", icon: FaDatabase, color: "#005571", category: "database" },
   { name: "Git", icon: FaGitAlt, color: "#F05032", category: "tools" },
   { name: "Docker", icon: FaDocker, color: "#2496ED", category: "tools" },
   { name: "Postman", icon: SiPostman, color: "#FF6C37", category: "tools" },
@@ -60,7 +61,7 @@ const categoryConfig = {
     icon: FaDatabase,
     color: "from-purple-500 to-pink-500",
     bgColor: "#8B5CF6",
-    skills: ["MongoDB", "MongoDB Atlas", "MySQL", "Git", "GitHub", "Postman", "Docker", "Vercel/Render"]
+    skills: ["MongoDB", "MongoDB Atlas", "OpenSearch", "MySQL", "Git", "GitHub", "Postman", "Docker", "Vercel/Render"]
   }
 };
 
